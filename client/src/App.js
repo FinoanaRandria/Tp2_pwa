@@ -26,7 +26,16 @@ function App() {
 
     
     
- 
+     function truncateOverview(overview, wordLimit){
+      const words = overview.split(" ");
+  
+      if (words.length <= wordLimit) {
+        return overview;
+      }
+  
+      const truncatedText = words.slice(0, wordLimit).join(" ");
+      return `${truncatedText} ...`;
+    }
     
 
   return (
@@ -91,11 +100,11 @@ function App() {
                   <img className="h-[600px] object-cover" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                   </div>
                  
-                  <h2 className="m-4 text-lg font-bold"> title : {movie.title}</h2>
+                  <h2 className="m-4 text-lg font-bold"> Title : {movie.title}</h2>
                    
-                     <h3 className="m-4 text-center font-bold">Description: </h3>
-                    <p>
-                        {movie.overview}
+                     <h3 className=" m-4 text-center font-bold">Description: </h3>
+                    <p className="px-2" >
+                        {truncateOverview(movie.overview,41)}
                     </p>
 
 
